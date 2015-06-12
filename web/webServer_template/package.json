@@ -1,0 +1,26 @@
+{
+  "name": "comp20ass03mapserver",
+  "version": "0.0.1",
+  "description": "COMP 20 Assignment 03: nods.js server for Assignment 02 'The Real Marauder's Map.'",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^2.3.1",
+    "express": "^4.12.3"
+  },
+  "engines": {
+    "node": "0.12.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}
