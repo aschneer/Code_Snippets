@@ -53,13 +53,33 @@ Ts = dum_Ts; % sec.
 t = dum_t; % sec.
 % Number of FFT points.
 % Extra ones are zero padded
-% onto signal.
+% onto signal.  This formula finds
+% the next power of 2 that will
+% be larger than length(x);
 nfft = (2^(ceil(log10(length(x))/log10(2))));
 % Frequency spectrum values.
 f = ((Fs/nfft).*linspace(0,((nfft/2)-1),(nfft/2)));
 
+
 % Perform actual spectral analysis
 % on imported signal.
+
+% UNFORTUNATELY, WINDOWING FUNCTIONS
+% ARE NOT AVAILABLE FOR FREEMAT,
+% SO I WILL HAVE TO MANUALLY WRITE ONE.
+
+% Calculate Hann (Hanning) Window:
+% Size of window.
+N = length(x);
+% Window.
+w = [];
+% Calculate window.
+for i = (0:(N-1))
+	w(i+1) = (0.5*(1-cos((2*pi*i)/(N-1))));
+end
+
+% Apply windowing function.
+x = (x.*w);
 
 % Take FFT.  The result is
 % a series of complex numbers.
