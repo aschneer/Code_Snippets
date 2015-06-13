@@ -37,7 +37,7 @@ clc;
 % spectral analysis on.
 
 	% IMPORT SIGNAL DATA...
-	x = dum_x;
+	x = dum_x; % (temporary).
 
 % Declare information about
 % imported signal.
@@ -63,9 +63,6 @@ f = ((Fs/nfft).*linspace(0,((nfft/2)-1),(nfft/2)));
 
 % Take FFT.  The result is
 % a series of complex numbers.
-	% REPLACE "dum_x" HERE WITH
-	% ACTUAL SIGNAL THAT SPECTRAL
-	% ANALYSIS IS BEING DONE ON.
 dft = fft(x,nfft);
 % Take first half of FFT output.
 dft = dft(1:(nfft/2));
@@ -90,21 +87,20 @@ pow_dft_log = (10.*log10(pow_dft));
 % Plots.
 figure(1);
 % Signal.
-subplot(2,1,1);
+subplot(3,1,1);
 plot(t,x);
+title('Original Signal');
 xlabel('Time (s)');
 ylabel('Value');
 % FFT Amplitude.
-subplot(2,1,2);
+subplot(3,1,2);
 plot(f,mag_dft);
+title('FFT Amplitude Plot');
 xlabel('Frequency (Hz)');
 ylabel('FFT Amplitude');
-
-	% % PSD Power Spectral Density.
-	% subplot(3,1,3);
-	% semilogy(f,pow_dft_log);
-	% xlabel('Frequency (Hz)');
-	% ylabel('Spectral Power (dB)');
-
-	% % NOTE: RIGHT NOW POWER SPECTRUM IS
-	% %		NOT WORKING PROPERLY!!!!!!!
+% PSD Power Spectral Density.
+subplot(3,1,3);
+plot(f,pow_dft_log);
+title('FFT PSD Plot');
+xlabel('Frequency (Hz)');
+ylabel('Spectral Power (dB)');
